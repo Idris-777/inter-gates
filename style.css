@@ -16,6 +16,37 @@
 
         }
 
+        .nodes{
+            height: 20px;
+            width: 20px;
+
+            
+            
+            
+        }
+        .input1{
+            background-color: red;
+            top: 70%;
+            margin: 5px;
+            position: absolute;
+        }
+        .input2{
+            background-color: rgb(211, 131, 56);
+            margin: 5px;
+            position: absolute;
+            
+
+        }
+        .output{
+            background-color: green;
+            margin: 5px;
+            left: 62%;
+            top: 40%;
+            position: absolute;
+        }
+
+        
+
         .controls {
             width: 110px;
             height: 150px;
@@ -26,7 +57,8 @@
             right: -22%;
             top: -11%;
             opacity: .4;
-            visibility: hidden;
+            visibility: visible;
+            background-color: red;
         }
 
         
