@@ -16,10 +16,10 @@
         <button class="-Y">-Y</button>
     </div> -->
     <div class="container">
-    <div class="and gate">
+    <div class="and gate object">
 
         AND
-        <div class="input1 nodes"></div>
+        <div class="input1 nodes" data-bit1="0" data-bit2="0" data-bito="0"></div>
         <div class="input2 nodes"></div>
         <div class="output nodes"></div>
         <div class="controls nodes">
@@ -31,7 +31,7 @@
     </div>
 
   
-    <div class="or gate">
+    <div class="or gate object" data-bit1="0" data-bit2="0" data-bito="0">
         OR
         <div class="input1 nodes"></div>
         <div class="input2 nodes"></div>
@@ -44,10 +44,10 @@
         </div>
 
     </div>
-    <div class="not gate">
+    <div class="not gate object">
         NOT
-        <div class="input1 nodes"></div>
-        <div class="input2 nodes"></div>
+        <div class="input1 nodes" data-bit1="0" data-bito="0"></div>
+        
         <div class="output nodes"></div>
         <div class="controls">
         <button class="X">></button>
@@ -56,12 +56,23 @@
         <button class="-Y">V</button>
         </div>
     </div>
-
+    <div class="source object" data-bit1="1">
+        <div class="input1 nodes"></div>
+       
+        <button class="source-btn">PP</button>
+        <div class="controls">
+        <button class="X">></button>
+        <button class="-X"><</button>
+        <button class="Y">^</button>
+        <button class="-Y">V</button>
+        </div>
+    </div>
     </div>
     <div class="genrate">
     <button class="andbtn btn">Add AND</button>
     <button class="orbtn btn">Add OR</button>
     <button class="notbtn btn">Add NOT</button>
+    <button class="source-btn-add btn">Add S</button>
     </div>
     <script src="script.js"></script>
 </body>

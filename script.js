@@ -1,6 +1,17 @@
 //variable to store durrent clicked gate
 let activegate = null
 
+
+// function to genrate random color
+function getrandomcolor(){
+    let v1 = Math.ceil(Math.random()*(255))
+    let v2 = Math.ceil(Math.random()*(255))
+    let v3 = Math.ceil(Math.random()*(255))
+
+    // console.log(`rgb(${v1}, ${v2}, ${v3})`)
+
+    return (`rgb(${v1}, ${v2}, ${v3})`)
+}
 //a fuction to move a gate
 function MoveGate(Gate,direction) {
   let posTop = 0
@@ -29,6 +40,11 @@ function MoveGate(Gate,direction) {
 
 //the fuction to genrate a gate
 function GenrateGate(GateNumber) {
+  if(document.querySelectorAll(".object").length > 11){
+      alert("remove those gates from here to add more KID")
+      return
+  }
+  
       switch (GateNumber) {
         case 1:
             const AND = document.body.querySelector(".and").cloneNode(true)
@@ -41,11 +57,114 @@ function GenrateGate(GateNumber) {
         case 3:
             const NOT = document.body.querySelector(".not").cloneNode(true)
             document.body.querySelector(".genrate").append(NOT)
-        default:
-          console.log("ran GenrateGate")
-          break;
+            break;
+        case 4:
+            const SOURCE = document.body.querySelector(".source").cloneNode(true)
+            document.body.querySelector(".genrate").append(SOURCE)
+            break;
+
+        
+          
+          
       }
 }
+
+function Source() {
+
+  document.querySelectorAll(".source").forEach((e)=>{
+    let bit1 = e.dataset.bit1
+    if(Number(bit1) == 1){
+      e.classList.add("source-btn-toggle")
+    }
+  })
+
+}
+
+function and() {
+
+  document.querySelectorAll(".and").forEach((e)=>{
+    let bit1 = e.dataset.bit1
+    let bit2 = e.dataset.bit2
+    let bito = e.dataset.bito
+
+    
+    if(Number(bit1) && Number(bit2) == 1){
+
+      bito = 1
+      e.dataset.bito = bito
+      
+    }
+  })
+
+}
+
+function or() {
+
+  document.querySelectorAll(".or").forEach((e)=>{
+    let bit1 = e.dataset.bit1
+    let bit2 = e.dataset.bit2
+    let bito = e.dataset.bito
+
+    
+    if(Number(bit1) && Number(bit2) == 1){
+
+      bito = 1
+      e.dataset.bito = bito
+      
+      
+    }
+  })
+
+}
+
+function not() {
+
+  document.querySelectorAll(".not").forEach((e)=>{
+    let bit1 = e.dataset.bit1
+    let bito = e.dataset.bito
+
+    switch (bit1) {
+      case 1:
+        bito = 0
+        break;
+      case 0:
+        bito = 1
+      
+    }
+    e.dataset.bio = bito
+    
+  })
+
+}
+
+
+function connect(node1,node2) {
+
+  bit1 = node1.dataset.bit1
+  bit2 = node2.dataset.bit2
+
+  let color = getrandomcolor()
+  node1.style.border = `3px solid ${color}`
+  node2.style.border = `3px solid ${color}`
+
+
+
+  if(bit1==bit2){
+    return
+  }
+
+  else{
+    bit1 = 1
+    bit2 = 1
+  }
+
+  not()
+  and()
+  Source()
+  or()
+
+}
+
 
 //adding a new and gate when button .andbtn pressed
 document.querySelector(".andbtn").addEventListener("click", () => {
@@ -65,25 +184,39 @@ document.querySelector(".notbtn").addEventListener("click", () => {
 
 })
 
+document.querySelector(".source-btn-add").addEventListener("click", () => {
+  GenrateGate(4)
+
+})
+
+
+//main event loop 
 document.body.addEventListener("mousedown", (e) => {
-activegate = e.target.closest(".gate")
+activegate = e.target.closest(".object")
+
+
   
   // runns only if target is a gate && controls of this target is not visible
-  if (e.target.classList.contains("gate") && !(e.target.querySelector(".controls").style.visibility == "visible")) {
+  if (e.target.classList.contains("object") && !(e.target.querySelector(".controls").style.visibility == "visible")) {
 
     e.target.querySelector(".controls").style.visibility = "visible"
-    console.log("i am no longer hidden")
+    
   }
 
   //runns only if the target controls are visible 
   else if (e.target.style.visibility == "visible") {
     e.target.style.visibility = "hidden"
-    console.log("i am no longer visible")
+    
   }
 
+})
+
+
+// event listner for on-screen controls
+document.addEventListener("mousedown", (e)=>{
   if(e.target.parentNode.classList.contains("controls")){
     console.log("initiated")
-    Gate = e.target.closest(".gate")
+    Gate = e.target.closest(".object")
     if(e.target.classList.contains("X")){
       MoveGate(Gate,"X")
     }
@@ -97,17 +230,33 @@ activegate = e.target.closest(".gate")
       MoveGate(Gate,"-Y")
     }
   }
+})
+  
+//event listner for turning source on and off
+document.addEventListener("mousedown", (e)=>{
 
+
+
+  if(e.target.parentNode.classList.contains("source") && e.target.classList.contains("source-btn"))
+  {
+    
+    
+    e.target.closest(".source").classList.toggle("source-btn-toggle")
+  }
 
 })
+  
+  
 
-  //controls functnality with keyboard added here
+
+
+  //event listner for controls functnality with keyboard
   document.body.addEventListener("keydown", (event)=>{
     
     const KeyName = event.key
     console.log(KeyName)
     console.log(activegate)
-      if(!activegate){
+      if(!activegate || activegate.querySelector(".controls").style.visibility !== "visible"){
         return
       }
  
@@ -126,5 +275,5 @@ activegate = e.target.closest(".gate")
         MoveGate(activegate,"-Y")
       }
 
-    })
- 
+  })
+
