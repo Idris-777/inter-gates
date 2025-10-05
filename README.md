@@ -1,1 +1,1 @@
-A simple implementation of logic gates AN ,OR and NOT using javascript 
+A simple implementation of logic gates AND ,OR and NOT using javascript 
