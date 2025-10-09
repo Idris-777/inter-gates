@@ -1,5 +1,6 @@
 //variable to store durrent clicked gate
 let activegate = null
+let node1 = null
 
 
 // function to genrate random color
@@ -131,7 +132,7 @@ function not() {
         bito = 1
       
     }
-    e.dataset.bio = bito
+    e.dataset.bito = bito
     
   })
 
@@ -190,7 +191,7 @@ document.querySelector(".source-btn-add").addEventListener("click", () => {
 })
 
 
-//main event loop 
+//event listner for toggling controls
 document.body.addEventListener("mousedown", (e) => {
 activegate = e.target.closest(".object")
 
@@ -274,6 +275,29 @@ document.addEventListener("mousedown", (e)=>{
       else if(KeyName === "ArrowDown"){
         MoveGate(activegate,"-Y")
       }
+
+  })
+
+  document.body.addEventListener("click", (e)=>{
+  if(!e.target.closest(".nodes")){
+    return
+
+  }
+
+  else{
+    if(node1 == null ){
+      node1 = e.target.closest(".nodes")
+      console.log(node1)
+      console.log("first node detected")
+    }
+
+    else{
+      connect(node1,e.target.closest(".nodes"))
+      console.log(e.target.closest(".nodes"))
+      node1 = null
+      console.log("second one detected and connection succesfull")
+    }
+  }
 
   })
 
