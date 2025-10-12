@@ -10,7 +10,7 @@
 
 <body>
     <!-- <div class="controls">
-        <button class="X">X</button>
+        <button class="X">X</button>k
         <button class="-X">-X</button>
         <button class="Y">Y</button>
         <button class="-Y">-Y</button>
@@ -19,9 +19,9 @@
     <div class="and gate object">
 
         AND
-        <div class="input1 nodes" data-bit1="0" data-bit2="0" data-bito="0"></div>
-        <div class="input2 nodes"></div>
-        <div class="output nodes"></div>
+        <div class="input1 nodes"data-bit="0" data-connectto=""></div>
+        <div class="input2 nodes" data-bit="0" data-connectto=""></div>
+        <div class="output nodes" data-bit="0" data-connectto=""></div>
         <div class="controls nodes">
         <button class="X">></button>
         <button class="-X"><</button>
@@ -31,11 +31,11 @@
     </div>
 
   
-    <div class="or gate object" data-bit1="0" data-bit2="0" data-bito="0">
+    <div class="or gate object">
         OR
-        <div class="input1 nodes"></div>
-        <div class="input2 nodes"></div>
-        <div class="output nodes"></div>
+        <div class="input1 nodes" data-bit="0" data-connectto=""></div>
+        <div class="input2 nodes" data-bit="0" data-connectto=""></div>
+        <div class="output nodes" data-bit="0" data-connectto=""></div>
         <div class="controls">
         <button class="X">></button>
         <button class="-X"><</button>
@@ -46,9 +46,9 @@
     </div>
     <div class="not gate object">
         NOT
-        <div class="input1 nodes" data-bit1="0" data-bito="0"></div>
+        <div class="input1 nodes" data-bit="0" data-connectto=""></div>
         
-        <div class="output nodes"></div>
+        <div class="output nodes"  data-bit="0" data-connectto=""></div>
         <div class="controls">
         <button class="X">></button>
         <button class="-X"><</button>
@@ -56,8 +56,8 @@
         <button class="-Y">V</button>
         </div>
     </div>
-    <div class="source object" data-bit1="1">
-        <div class="input1 nodes"></div>
+    <div class="source object" >
+        <div class="input1 nodes" data-bit="0" data-connectto=""></div>
        
         <button class="source-btn">PP</button>
         <div class="controls">
